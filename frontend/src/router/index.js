@@ -1,12 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import DataView from '@/components/DataView.vue';
-import DataViewTest2 from '@/components/DataViewTest2.vue';
-import DataViewTest3 from '@/components/DataViewTest3.vue';
+import DataView from '@/components/EquipedeDirection.vue';
+import DataViewTest2 from '@/components/EquipedeCommerce.vue';
+import DataViewTest3 from '@/components/EquipedeComptable.vue';
+import Dashboard from '@/components/Dashboard.vue';
+
 
 const routes = [
-  { path: '/', name: 'DataView', component: DataView },
-  { path: '/test2', name: 'DataViewTest2', component: DataViewTest2 },
-  { path: '/test3', name: 'DataViewTest3', component: DataViewTest3 }
+  { path: '/', name: 'EquipedeDirection', component: DataView },
+  { path: '/test2', name: 'EquipedeCommerce', component: DataViewTest2 },
+  { path: '/test3', name: 'EquipedeComptable', component: DataViewTest3 },
+  { path: '/dashboard', name: 'Dashboard', component: Dashboard }
+
 ];
 
 const router = createRouter({

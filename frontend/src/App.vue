@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/test2">View Test2</router-link>
-      <router-link to="/test3">View Test3</router-link>
-    </nav>
+    <NavBar />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import NavBar from './components/NavBar.vue';
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    NavBar
+  }
 }
 </script>
