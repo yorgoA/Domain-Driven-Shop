@@ -10,7 +10,7 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="navbar-items">
-            <b-nav-item v-if="role === 'admin'" :to="{ name: 'Home' }" exact>
+            <b-nav-item :to="{ name: 'Home' }" exact>
               <i class="bi bi-house"></i> Home
             </b-nav-item>
             <b-nav-item v-if="role === 'admin'" :to="{ name: 'EquipedeDirection' }">
