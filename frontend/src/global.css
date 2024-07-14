@@ -69,4 +69,73 @@ body, html {
     border-radius: 5px;
     font-size: 1rem;
   }
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
   
+  .brand-link {
+    text-decoration: none;
+    color: #fff8f8;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar-items {
+    flex: 1;
+  }
+  
+  .navbar-logout {
+    margin-left: auto;
+  }
+  
+  .logout-button {
+    margin-left: auto;
+  }
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+.header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+}
+
+.login-container {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.login-container h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.b-form-group {
+  margin-bottom: 1rem;
+}
+
+.login-button {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 0.5em;
+  border-radius: 5px;
+}

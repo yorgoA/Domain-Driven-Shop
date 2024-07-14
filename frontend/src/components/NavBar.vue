@@ -78,8 +78,8 @@ export default {
     async logout() {
       const { error } = await supabase.auth.signOut();
       if (!error) {
-        await clearRole();  // Clear the role
-        this.$router.push({ name: 'LoginPage' }); // Redirect to login page
+        await clearRole(); 
+        this.$router.push({ name: 'LoginPage' });
       }
     },
     updateNavVisibility(route) {
@@ -95,29 +95,7 @@ export default {
 
 <style scoped>
 
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
 
-.brand-link {
-  text-decoration: none;
-  color: #fff8f8;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.navbar-items {
-  flex: 1;
-}
-
-.navbar-logout {
-  margin-left: auto;
-}
-
-.logout-button {
-  margin-left: auto;
-}
 
 .router-link-exact-active {
   border-radius: 5px;
