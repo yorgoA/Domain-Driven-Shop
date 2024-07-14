@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container">
+  <div class="content-container">
     <h1>Login</h1>
     <b-form @submit.prevent="login">
       <b-form-group label="Email" label-for="email-input">
@@ -15,6 +15,8 @@
 
 <script>
 import supabase from '../supabase';
+import { getUserRole } from '../utils/auth';
+import { setRole } from '../utils/role';
 
 export default {
   name: 'LoginPage',
@@ -30,36 +32,13 @@ export default {
         email: this.email,
         password: this.password
       });
-
       if (error) {
         console.error('Error logging in:', error.message);
       } else {
-        console.log('Logged in user:', data);
         const user = data.user;
-        const { data: roleData, error: roleError } = await supabase
-          .from('user_roles')
-          .select('role')
-          .eq('user_id', user.id)
-          .single();
-
-        if (roleError || !roleData) {
-          console.error('Error fetching user role:', roleError ? roleError.message : 'No role found for this user');
-        } else {
-          const role = roleData.role;
-
-          // Redirect based on user role
-          setTimeout(() => {
-            if (role === 'admin') {
-              this.$router.push({ name: 'Dashboard' });
-            } else if (role === 'compta') {
-              this.$router.push({ name: 'EquipedeComptable' });
-            } else if (role === 'commerce') {
-              this.$router.push({ name: 'EquipedeCommerce' });
-            } else {
-              this.$router.push({ name: 'Home' });
-            }
-          }, 2000);
-        }
+        const role = await getUserRole(user.id);
+        await setRole(role);  
+        this.$router.push({ name: 'Home' }); 
       }
     }
   }

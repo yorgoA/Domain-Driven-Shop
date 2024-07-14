@@ -1,7 +1,7 @@
 import supabase from '../supabase';
 
 export async function getUserRole(userId) {
-  console.log('Fetching role for user ID:', userId); 
+  console.log('Fetching role for user ID:', userId);
   const { data, error } = await supabase
     .from('user_roles')
     .select('role')
@@ -9,9 +9,9 @@ export async function getUserRole(userId) {
     .single();
 
   if (error) {
-    console.error('Error fetching user role:', error.message); 
+    console.error('Error fetching user role:', error.message);
     throw error;
   }
-  console.log('User role data:', data); 
+  console.log('User role data:', data);
   return data.role;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="content-container">
     <h1 class="text-center mb-4">Tableau pour la Direction</h1>
     
     <div class="form-group mb-4">
@@ -90,14 +90,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.container {
-  max-width: 800px;
-  margin: auto;
-}
-
-.form-control, .b-pagination {
-  margin-bottom: 10px;
-}
-</style>

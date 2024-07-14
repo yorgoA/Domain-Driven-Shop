@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content-container">
     <h1>Data from Table Test2</h1>
     <ul>
       <li v-for="item in items" :key="item.id">
