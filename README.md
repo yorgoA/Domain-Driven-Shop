@@ -19,12 +19,15 @@ Ce projet est une application web construite avec Vue.js pour le frontend et Nod
 
 ## Les comptes :
 1. Admin : 
+
             email : yorgo@admin.com
             mdp : admin
 2. Commerce : 
+
             email : yorgo@commerce.com
             mdp : commerce
 3. Compta : 
+
             email : yorgo@compta.com
             mdp : compta
 
