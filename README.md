@@ -8,19 +8,30 @@ Ce projet est une application web construite avec Vue.js pour le frontend et Nod
 - npm (v6 ou plus récent)
 
 ## Comment lancer
-1. Se déplacer dans le répertoire du projet et dans le terminal : npm install 
-2. Créez un fichier `.env` dans le dossier `backend` avec les variables suivantes :
+1. Se déplacer dans le répertoire racine du projet et exécuter dans le terminal :
 
-   SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlxamt2Z2d1dm1zc2Z6emVnZnlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTkyMzUwMTUsImV4cCI6MjAzNDgxMTAxNX0.0zkE4hrVvi7n0YyrEd1XEER9EMgkwhKhCAo6Iufr9_o
+   ```bash
+   npm install
+2. Se déplacer dans le répertoire frontend et exécuter :
 
-   PORT=3000
+   ```bash
+   npm install
+3. Se déplacer dans le répertoire backend et exécuter :
 
-3. Créez un fichier `.env` dans le dossier `frontend` avec la variable suivante :
+   ```bash
+   npm install
 
-   VUE_APP_SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlxamt2Z2d1dm1zc2Z6emVnZnlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTkyMzUwMTUsImV4cCI6MjAzNDgxMTAxNX0.0zkE4hrVvi7n0YyrEd1XEER9EMgkwhKhCAo6Iufr9_o
+4. Pour lancer le backend, exécutez : 
 
-4. cd Backend / npm run dev
-5. cd Frontend / npm run serve
+   ```bash
+   cd Backend 
+   npm run dev
+
+5. Pour lancer le backend, exécutez : 
+
+   ```bash
+   cd Frontend 
+   npm run serve
 
 ## Les comptes :
 1. Admin : 
