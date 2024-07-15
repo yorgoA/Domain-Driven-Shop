@@ -3,7 +3,6 @@ import HomePage from '../components/HomePage.vue';
 import EquipedeComptable from '../components/EquipedeComptable.vue';
 import EquipedeCommerce from '../components/EquipedeCommerce.vue';
 import DashboardView from '../components/DashboardView.vue';
-import EquipedeDirection from '../components/EquipedeDirection.vue';
 import LoginPage from '../components/LoginPage.vue';
 import supabase from '../supabase';
 import { getUserRole } from '../utils/auth';
@@ -14,7 +13,6 @@ const routes = [
   { path: '/test2', name: 'EquipedeComptable', component: EquipedeComptable, meta: { requiresAuth: true, roles: ['admin', 'compta'] } },
   { path: '/test3', name: 'EquipedeCommerce', component: EquipedeCommerce, meta: { requiresAuth: true, roles: ['admin', 'commerce'] } },
   { path: '/dashboard', name: 'Dashboard', component: DashboardView, meta: { requiresAuth: true, roles: ['admin'] } },
-  { path: '/direction', name: 'EquipedeDirection', component: EquipedeDirection, meta: { requiresAuth: true, roles: ['admin'] } },
   { path: '/login', name: 'LoginPage', component: LoginPage }
 ];
 

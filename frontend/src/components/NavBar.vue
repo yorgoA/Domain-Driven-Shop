@@ -13,9 +13,6 @@
             <b-nav-item :to="{ name: 'Home' }" exact>
               <i class="bi bi-house"></i> Home
             </b-nav-item>
-            <b-nav-item v-if="role === 'admin'" :to="{ name: 'EquipedeDirection' }">
-              <i class="bi bi-briefcase"></i> Direction
-            </b-nav-item>
             <b-nav-item v-if="['admin', 'compta'].includes(role)" :to="{ name: 'EquipedeComptable' }">
               <i class="bi bi-table"></i> Comptable
             </b-nav-item>
@@ -94,9 +91,6 @@ export default {
 </script>
 
 <style scoped>
-
-
-
 .router-link-exact-active {
   border-radius: 5px;
   color: #fff !important;
