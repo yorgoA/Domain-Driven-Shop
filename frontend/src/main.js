@@ -9,7 +9,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css';
 import BootstrapVue3 from 'bootstrap-vue-3';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './global.css'; 
+import './global.css';
+
 async function initializeApp() {
   const app = createApp({
     setup() {
@@ -30,6 +31,14 @@ async function initializeApp() {
     },
     render: () => h(App),
   });
+    // eslint-disable-next-line no-unused-vars
+  app.config.errorHandler = (err, vm, info) => {
+    if (err.message.includes('Maximum recursive updates exceeded')) {
+      console.warn('Suppressed recursive update error:', err);
+    } else {
+      throw err; 
+    }
+  };
 
   app.use(BootstrapVue3);
   app.use(router);

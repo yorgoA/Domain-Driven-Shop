@@ -15,7 +15,8 @@
     "bootstrap-vue-3": "^0.5.1",
     "chart.js": "^4.4.3",
     "core-js": "^3.8.3",
-    "vue": "^3.2.13",
+    "swiper": "^11.1.5",
+    "vue": "^3.4.31",
     "vue-chartjs": "^5.3.1",
     "vue-router": "^4.4.0"
   },

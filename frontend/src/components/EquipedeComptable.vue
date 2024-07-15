@@ -3,7 +3,7 @@
     <h1 class="text-center mb-4">Équipe Comptable - Tableaux des Données</h1>
     
     <b-tabs card class="custom-tab">
-      <b-tab title="Revenus et Coûts" active>
+      <b-tab title="Revenus et coûts" active>
         <div class="table-container">
           <div class="form-group mb-4">
             <input 
@@ -47,7 +47,7 @@
         </div>
       </b-tab>
       
-      <b-tab title="Commandes et Produits">
+      <b-tab title="Commandes et produits">
         <div class="table-container">
           <div class="form-group mb-4">
             <input 
@@ -82,7 +82,7 @@
         </div>
       </b-tab>
 
-      <b-tab title="Clients et Profits">
+      <b-tab title="Clients et profits">
         <div class="table-container">
           <div class="form-group mb-4">
             <input 

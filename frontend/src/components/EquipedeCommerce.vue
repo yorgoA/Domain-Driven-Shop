@@ -3,7 +3,7 @@
     <h1 class="text-center mb-4">Équipe Commerce - Tableaux des Données</h1>
 
     <b-tabs card class="custom-tab">
-      <b-tab title="Product Sales Metrics" active>
+      <b-tab title="Metrics de vente des produits" active>
         <div class="table-container">
           <div class="form-group mb-4">
             <input
@@ -44,7 +44,7 @@
         </div>
       </b-tab>
 
-      <b-tab title="City Orders and Population">
+      <b-tab title="Ordre des villes et des populations">
         <div class="table-container">
           <div class="form-group mb-4">
             <input
