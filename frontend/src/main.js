@@ -31,14 +31,6 @@ async function initializeApp() {
     },
     render: () => h(App),
   });
-    // eslint-disable-next-line no-unused-vars
-  app.config.errorHandler = (err, vm, info) => {
-    if (err.message.includes('Maximum recursive updates exceeded')) {
-      console.warn('Suppressed recursive update error:', err);
-    } else {
-      throw err; 
-    }
-  };
 
   app.use(BootstrapVue3);
   app.use(router);
