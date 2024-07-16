@@ -74,26 +74,108 @@
           ></b-pagination>
         </div>
       </b-tab>
+
+      <b-tab title="Comparaison des villes">
+        <div class="chart-container">
+          <b-form-select
+            v-model="selectedCity"
+            :options="cityOptions"
+            @change="updateChart"
+          ></b-form-select>
+          <div v-if="chartDataReady">
+            <FourthChartComponent
+              ref="cityChart"
+              :chartData="chartData"
+              :chartOptions="chartOptions"
+            />
+          </div>
+        </div>
+      </b-tab>
     </b-tabs>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import FourthChartComponent from './charts/FourthChartComponent.vue';
 
 export default {
   data() {
     return {
       productSalesItems: [],
       cityOrdersItems: [],
-
       productSalesQuery: '',
       cityOrdersQuery: '',
-
       currentPageProductSales: 1,
       currentPageCityOrders: 1,
       itemsPerPage: 10,
-
+      selectedCity: '',
+      chartData: {
+        labels: [],
+        datasets: [],
+      },
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        color: "white",
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: "white",
+            },
+            grid: {
+              display: true,
+            },
+            position: "left",
+            title: {
+              display: true,
+              text: "Total des Commandes",
+              color: "white",
+            },
+          },
+          y1: {
+            beginAtZero: true,
+            ticks: {
+              color: "white",
+            },
+            grid: {
+              display: false,
+            },
+            position: "right",
+            title: {
+              display: true,
+              text: "Population",
+              color: "white",
+            },
+          },
+          x: {
+            ticks: {
+              color: "white",
+            },
+            grid: {
+              color: "transparent",
+            },
+            title: {
+              display: true,
+              text: "Ville",
+              color: "white",
+            },
+          },
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                let label = context.dataset.label || "";
+                label = `${label}: ${context.formattedValue}`;
+                return label;
+              },
+            },
+          },
+        },
+      },
+      chartDataReady: false,
       productSalesFields: [
         { key: 'product_category_name_english', label: 'Nom du Produit' },
         { key: 'payment_value', label: 'Valeur du Paiement' },
@@ -103,17 +185,20 @@ export default {
         { key: 'avg_delivery_time', label: 'Temps de Livraison Moyen' },
         { key: 'avg_review_score', label: 'Note Moyenne' },
       ],
-
       cityOrdersFields: [
         { key: 'city', label: 'Ville' },
         { key: 'total_orders', label: 'Total des Commandes' },
         { key: 'population', label: 'Population' },
-      ]
+      ],
+      cityOptions: [],
     };
+  },
+  components: {
+    FourthChartComponent,
   },
   computed: {
     filteredProductSalesItems() {
-      return this.productSalesItems.filter(item =>
+      return this.productSalesItems.filter((item) =>
         item.product_category_name_english &&
         item.payment_value !== null &&
         item.total_products_sold !== null &&
@@ -138,9 +223,8 @@ export default {
     sortedPaginatedProductSalesItems() {
       return this.getSortedItems(this.paginatedProductSalesItems, 'total_products_sold');
     },
-
     filteredCityOrdersItems() {
-      return this.cityOrdersItems.filter(item =>
+      return this.cityOrdersItems.filter((item) =>
         item.city &&
         item.total_orders !== null &&
         item.population !== null &&
@@ -160,27 +244,66 @@ export default {
     },
     sortedPaginatedCityOrdersItems() {
       return this.getSortedItems(this.paginatedCityOrdersItems, 'total_orders');
-    }
+    },
   },
   methods: {
     getSortedItems(items, key) {
       return items.slice().sort((a, b) => b[key] - a[key]);
-    }
+    },
+    updateChart() {
+      console.log('Updating chart with city:', this.selectedCity);
+      const cityData = this.cityOrdersItems.find(item => item.city === this.selectedCity);
+
+      if (!cityData) {
+        console.error('Selected city not found!');
+        return;
+      }
+
+      this.chartData = {
+        labels: [this.selectedCity],
+        datasets: [
+          {
+            label: 'Total des Commandes',
+            data: [cityData.total_orders],
+            backgroundColor: '#42A5F5',
+            yAxisID: 'y',
+          },
+          {
+            label: 'Population',
+            data: [cityData.population],
+            backgroundColor: '#FFA500',
+            yAxisID: 'y1',
+          },
+        ],
+      };
+
+      this.chartDataReady = true;
+      this.$nextTick(() => {
+        this.$refs.cityChart.renderChart();
+      });
+    },
   },
   async created() {
     try {
-      const responseProductSales = await axios.get('/api/test2');
-      const responseCityOrders = await axios.get('/api/test2');
+      const response = await axios.get('/api/test2');
+      this.productSalesItems = response.data;
+      this.cityOrdersItems = response.data;
 
-      this.productSalesItems = responseProductSales.data;
-      this.cityOrdersItems = responseCityOrders.data;
+      this.cityOptions = this.cityOrdersItems
+        .filter((item) => item.city)
+        .map((item) => ({
+          value: item.city,
+          text: item.city,
+        }));
+
+      console.log('Product sales items:', this.productSalesItems);
+      console.log('City orders items:', this.cityOrdersItems);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  }
-}
+  },
+};
 </script>
-
 <style scoped>
 .content-container {
   max-width: 1200px;
@@ -202,12 +325,25 @@ b-table {
 }
 
 .custom-tab .nav-link {
-  color: #fff !important; 
+  color: #fff !important;
   font-weight: bold;
 }
 
 .custom-tab .nav-link.active {
-  color: #000 !important; 
-  background-color: #ffc107; 
+  color: #000 !important;
+  background-color: #ffc107;
+}
+
+.chart-container {
+  position: relative;
+  height: 400px; /* Adjusted height to 400px */
+  width: 80vw;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: white;
 }
 </style>
