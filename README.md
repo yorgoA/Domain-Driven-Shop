@@ -50,20 +50,52 @@ Ce projet est une application web construite avec Vue.js pour le frontend et Nod
 ## Bounded Context
 
 1. Vue Comptable :
+
    - Objectifs : Faire en sorte que l'équipe comptable puisse rendre des comptes à la direction quant aux dépenses de l'entreprise.
+
    - Informations : Nous avons pris la décision de séparer les données obtenues en 3 tableaux distincts 
+
    - Actions :
+         - Analyse des dépenses et des revenus
+         - Suivi des marges bénéficiaires
+         - Évaluation des produits les plus rentables et les plus vendus
    - But :
+         - Fournir des rapports financiers précis et détaillés
+         - Optimiser la gestion des coûts
+         - Maximiser les revenus et les marges bénéficiaires
+
 2. Vue Commercial :
+
    - Objectifs : Faire en sorte que l'équipe commercial puisse avoir accès aux données des ventes de la boutique, le produit le mieux vendus, la ville la plus rentable...
+
    - Informations : Nous avons deux csv d'entrée distincts, un concernant les produits, leur rentabilité, le produit le plus "retourné", mais aussi quelle ville est rentable ou non en fonction de son nombre d'habitants.
+
    - Actions :
+         - Analyse des performances de vente par produit et par ville
+         - Identification des opportunités de croissance
+         - Élaboration de stratégies de promotion des produits
+
    - But :
+         - Augmenter les ventes
+         - Améliorer la satisfaction des clients
+         - Identifier et exploiter les marchés les plus rentables
+
+
 3. Vue Direction :
+
    - Objectifs : Avoir une vision d'ensemble sur la boutique, quelle ville est la plus rentable par habitants, comment on peut optimiser certaines villes / régions afin d'améliorer les profits.
+
    - Informations : Nous voulons faire en sorte que la direction ait accès aux données simplement, grâce à des graphiques simple.
+
    - Actions :
+         - Planification des stratégies futures.
+         - Allocation des ressources, concernant les villes.
+         - Répartition des moyens à travers tout le brésil.
+
    - But :
+         - Faciliter la prise de décision basée sur les données
+         - Aligner les stratégies commerciales avec les opportunités du marché
+         - Optimiser les performances globales de l'entreprise
 
 
 Conclusion 
