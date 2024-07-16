@@ -44,7 +44,7 @@
         </div>
       </b-tab>
 
-      <b-tab title="Ordre des villes et des populations">
+      <b-tab title="Commande des villes et leur populations">
         <div class="table-container">
           <div class="form-group mb-4">
             <input
