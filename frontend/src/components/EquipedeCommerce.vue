@@ -6,24 +6,11 @@
       <b-tab title="Metrics de vente des produits" active>
         <div class="table-container">
           <div class="form-group mb-4">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Rechercher par nom de produit"
-              v-model="productSalesQuery"
-            />
+            <input type="text" class="form-control" placeholder="Rechercher par nom de produit"
+              v-model="productSalesQuery" />
           </div>
-          <b-table
-            id="product-sales-table"
-            striped
-            outlined
-            hover
-            foot-clone
-            table-variant="light"
-            :items="sortedPaginatedProductSalesItems"
-            :fields="productSalesFields"
-            responsive="sm"
-          >
+          <b-table id="product-sales-table" striped outlined hover foot-clone table-variant="light"
+            :items="sortedPaginatedProductSalesItems" :fields="productSalesFields" responsive="sm">
             <template #cell(payment_value)="data">
               ${{ data.item.payment_value.toLocaleString() }}
             </template>
@@ -34,60 +21,36 @@
               {{ data.item.avg_review_score.toFixed(2) }}
             </template>
           </b-table>
-          <b-pagination
-            v-if="totalPagesProductSales > 1"
-            v-model="currentPageProductSales"
-            :total-rows="totalItemsProductSales"
-            :per-page="itemsPerPage"
-            aria-controls="product-sales-table"
-          ></b-pagination>
+          <b-pagination v-if="totalPagesProductSales > 1" v-model="currentPageProductSales"
+            :total-rows="totalItemsProductSales" :per-page="itemsPerPage"
+            aria-controls="product-sales-table"></b-pagination>
         </div>
       </b-tab>
 
       <b-tab title="Commande des villes et leur populations">
         <div class="table-container">
           <div class="form-group mb-4">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Rechercher par ville"
-              v-model="cityOrdersQuery"
-            />
+            <input type="text" class="form-control" placeholder="Rechercher par ville" v-model="cityOrdersQuery" />
           </div>
-          <b-table
-            id="city-orders-table"
-            striped
-            outlined
-            hover
-            foot-clone
-            table-variant="light"
-            :items="sortedPaginatedCityOrdersItems"
-            :fields="cityOrdersFields"
-            responsive="sm"
-          ></b-table>
-          <b-pagination
-            v-if="totalPagesCityOrders > 1"
-            v-model="currentPageCityOrders"
-            :total-rows="totalItemsCityOrders"
-            :per-page="itemsPerPage"
-            aria-controls="city-orders-table"
-          ></b-pagination>
+          <b-table id="city-orders-table" striped outlined hover foot-clone table-variant="light"
+            :items="sortedPaginatedCityOrdersItems" :fields="cityOrdersFields" responsive="sm"></b-table>
+          <b-pagination v-if="totalPagesCityOrders > 1" v-model="currentPageCityOrders"
+            :total-rows="totalItemsCityOrders" :per-page="itemsPerPage"
+            aria-controls="city-orders-table"></b-pagination>
         </div>
       </b-tab>
 
       <b-tab title="Comparaison des villes">
         <div class="chart-container">
-          <b-form-select
-            v-model="selectedCity"
-            :options="cityOptions"
-            @change="handleCityChange"
-          ></b-form-select>
+          <b-form-select v-model="selectedCity" :options="cityOptions" @change="handleCityChange"></b-form-select>
           <div v-if="chartDataReady">
-            <FourthChartComponent
-              ref="cityChart"
-              :chartData="chartData"
-              :chartOptions="chartOptions"
-            />
+            <FourthChartComponent ref="cityChart" :chartData="chartData" :chartOptions="chartOptions" />
+          </div>
+        </div>
+        <div class="market-penetration-container">
+          <h4>Market Penetration for {{ selectedCity }}</h4>
+          <div class="market-penetration-value">
+            {{ marketPenetration }}
           </div>
         </div>
       </b-tab>
@@ -111,6 +74,7 @@ export default {
       currentPageCityOrders: 1,
       itemsPerPage: 10,
       selectedCity: '',
+      marketPenetration:'',
       chartData: {
         labels: [],
         datasets: [],
@@ -281,7 +245,7 @@ export default {
             },
           ],
         };
-
+        this.marketPenetration = ((cityData.total_orders / cityData.population) * 100).toFixed(2) + '%';
         this.chartDataReady = true;
         this.$nextTick(() => {
           this.$refs.cityChart.renderChart();
@@ -310,7 +274,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .content-container {
   max-width: 1200px;
@@ -347,49 +310,18 @@ b-table {
   width: 80vw;
 }
 
-.loading {
-  text-align: center;
-  padding: 20px;
-  font-size: 18px;
-  color: white;
-}
-</style>
-
-
-<style scoped>
-.content-container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.table-container {
+.market-penetration-container {
   margin-top: 20px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 18px;
+  color: white;
 }
 
-b-table {
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.custom-tab .nav-link {
-  color: #fff !important;
+.market-penetration-value {
+  font-size: 24px;
   font-weight: bold;
-}
-
-.custom-tab .nav-link.active {
-  color: #000 !important;
-  background-color: #ffc107;
-}
-
-.chart-container {
-  position: relative;
-  height: 400px;
-  width: 80vw;
+  color: #ffc107;
 }
 
 .loading {
@@ -399,4 +331,3 @@ b-table {
   color: white;
 }
 </style>
-
