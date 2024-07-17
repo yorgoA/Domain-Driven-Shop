@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="market-penetration-container">
-          <h4>Market Penetration pour {{ selectedCity }}</h4>
+          <h4>Pénétration du marché pour {{ selectedCity }}</h4>
           <div class="market-penetration-value">
             {{ marketPenetration }}
           </div>
