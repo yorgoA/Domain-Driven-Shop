@@ -303,7 +303,7 @@ export default {
         }
       });
 
-      this.loading = false; // Hide the loading indicator
+      this.loading = false; 
       console.log('Chart initialized');
     },
     updatePieChart() {
@@ -342,8 +342,8 @@ export default {
 
         setTimeout(() => {
           this.initializeChart();
-        }, 500); // Ensure enough time for the chart to be destroyed before reinitializing
-      }, 500); // Simulate loading time
+        }, 500); 
+      }, 500); 
     }
   },
   async created() {

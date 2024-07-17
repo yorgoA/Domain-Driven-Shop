@@ -80,7 +80,7 @@
           <b-form-select
             v-model="selectedCity"
             :options="cityOptions"
-            @change="updateChart"
+            @change="handleCityChange"
           ></b-form-select>
           <div v-if="chartDataReady">
             <FourthChartComponent
@@ -94,6 +94,7 @@
     </b-tabs>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios';
@@ -250,37 +251,42 @@ export default {
     getSortedItems(items, key) {
       return items.slice().sort((a, b) => b[key] - a[key]);
     },
+    handleCityChange() {
+      this.updateChart();
+    },
     updateChart() {
-      console.log('Updating chart with city:', this.selectedCity);
-      const cityData = this.cityOrdersItems.find(item => item.city === this.selectedCity);
+      setTimeout(() => {
+        console.log('Updating chart with city:', this.selectedCity);
+        const cityData = this.cityOrdersItems.find(item => item.city === this.selectedCity);
 
-      if (!cityData) {
-        console.error('Selected city not found!');
-        return;
-      }
+        if (!cityData) {
+          console.error('Selected city not found!');
+          return;
+        }
 
-      this.chartData = {
-        labels: [this.selectedCity],
-        datasets: [
-          {
-            label: 'Total des Commandes',
-            data: [cityData.total_orders],
-            backgroundColor: '#42A5F5',
-            yAxisID: 'y',
-          },
-          {
-            label: 'Population',
-            data: [cityData.population],
-            backgroundColor: '#FFA500',
-            yAxisID: 'y1',
-          },
-        ],
-      };
+        this.chartData = {
+          labels: [this.selectedCity],
+          datasets: [
+            {
+              label: 'Total des Commandes',
+              data: [cityData.total_orders],
+              backgroundColor: '#42A5F5',
+              yAxisID: 'y',
+            },
+            {
+              label: 'Population',
+              data: [cityData.population],
+              backgroundColor: '#FFA500',
+              yAxisID: 'y1',
+            },
+          ],
+        };
 
-      this.chartDataReady = true;
-      this.$nextTick(() => {
-        this.$refs.cityChart.renderChart();
-      });
+        this.chartDataReady = true;
+        this.$nextTick(() => {
+          this.$refs.cityChart.renderChart();
+        });
+      }, 500); // Small timeout to ensure data is ready
     },
   },
   async created() {
@@ -304,6 +310,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .content-container {
   max-width: 1200px;
@@ -336,7 +343,7 @@ b-table {
 
 .chart-container {
   position: relative;
-  height: 400px; /* Adjusted height to 400px */
+  height: 400px;
   width: 80vw;
 }
 
@@ -347,3 +354,49 @@ b-table {
   color: white;
 }
 </style>
+
+
+<style scoped>
+.content-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+b-table {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.custom-tab .nav-link {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.custom-tab .nav-link.active {
+  color: #000 !important;
+  background-color: #ffc107;
+}
+
+.chart-container {
+  position: relative;
+  height: 400px;
+  width: 80vw;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: white;
+}
+</style>
+
