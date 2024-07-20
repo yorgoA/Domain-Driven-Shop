@@ -98,4 +98,9 @@ Ce projet est une application web construite avec Vue.js pour le frontend et Nod
    - Optimiser les performances globales de l'entreprise
 
 
-Conclusion 
+Conclusion : 
+Nous avons donc les 3 vues de disponible avec le Dashboard.
+Nous vous conseillons de vous connecter en admin afin d'avoir toutes ces vues.
+Nous nous sommes inspirés de ce que nous faisons au travail pour ces différentes pages et nous espérons que cela vous conviendra.
+Aussi bien les différents tableaux où les gestionnaires peuvent y faire des recherches précises, mais aussi les différents graphs interactifs que nous avons mis en place.
+Pour toutes questions merci de contacter Azouz Théo : theoaz25@gmail.com
